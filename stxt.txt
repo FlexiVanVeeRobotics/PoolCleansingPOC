@@ -4,7 +4,7 @@
                                 
                                     
                                         
-                                            Invalid SS CODE  0
+                                            Invalid SS CODE  12
                                         
                                     
                                 
@@ -13,7 +13,7 @@
                                 
                                     
                                         
-                                            LOC Seq Errors 0
+                                            LOC Seq Errors 34
                                         
                                     
                                 
@@ -22,7 +22,7 @@
                                 
                                     
                                         
-                                            MISSING IG/Overlap 0
+                                            MISSING IG/Overlap 29
                                          
                                     
                                 
@@ -31,7 +31,7 @@
                                 
                                     
                                         
-                                            MISSING OG 0
+                                            MISSING OG 112
                                         
                                     
                                 
@@ -40,7 +40,7 @@
                                 
                                     
                                         
-                                           OTHER Errors 0
+                                           OTHER Errors 927
                                         
                                     
                                 
