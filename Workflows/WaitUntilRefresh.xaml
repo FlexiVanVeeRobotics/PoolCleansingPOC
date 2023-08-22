@@ -2,7 +2,7 @@
   <x:Members>
     <x:Property Name="in_UiBrowserCAMS" Type="InArgument(ui:Browser)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>554.6666666666666,996</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1150,463.3333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -90,7 +90,7 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="564.6666666666666,931.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_42">
+  <Sequence sap:VirtualizedContainerService.HintSize="376,273.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_42">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="blnVisibility" />
     </Sequence.Variables>
@@ -99,10 +99,10 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <DoWhile DisplayName="WaitUntilRefresh - Filter" sap:VirtualizedContainerService.HintSize="522.6666666666666,844" sap2010:WorkflowViewState.IdRef="DoWhile_2">
+    <DoWhile DisplayName="WaitUntilRefresh - Filter" sap:VirtualizedContainerService.HintSize="334,54" sap2010:WorkflowViewState.IdRef="DoWhile_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -113,7 +113,7 @@
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UiBrowserCAMS]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="434,402.6666666666667" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+        <ui:BrowserScope Browser="[in_UiBrowserCAMS]" BrowserType="Chrome" ContinueOnError="{x:Null}" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="434,402.6666666666667" sap2010:WorkflowViewState.IdRef="BrowserScope_1" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}">
           <ui:BrowserScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
@@ -125,7 +125,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="visibility" DisplayName="Get Attribute 'Visibility'" sap:VirtualizedContainerService.HintSize="334,206" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+                <ui:GetAttribute Attribute="visibility" ContinueOnError="{x:Null}" DisplayName="Get Attribute 'Visibility'" sap:VirtualizedContainerService.HintSize="334,206" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
                   <ui:GetAttribute.Result>
                     <OutArgument x:TypeArguments="x:Int32">[blnVisibility]</OutArgument>
                   </ui:GetAttribute.Result>
@@ -144,5 +144,6 @@
         <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Trace]" Message="[blnVisibility]" />
       </Sequence>
     </DoWhile>
+    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Delay_1" />
   </Sequence>
 </Activity>
