@@ -485,7 +485,7 @@
                       <OutArgument x:TypeArguments="x:String">[strConHistSelectRecordNum]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[dtContainerHistoryInGate(0)("ContainerHistoryRowNumber").tostring]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[dtContainerHistoryInGate.Rows(0)("ContainerHistoryRowNumber").ToString]</InArgument>
                     </Assign.Value>
                   </Assign>
                   <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Apply" sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT">
