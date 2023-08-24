@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,4269.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1084,4269.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -463,7 +463,7 @@
                 <OutArgument x:TypeArguments="x:String">[strOutputFileName]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[strChassisID+"_"+Now.ToString("MMddyyyy_hhmmss")+".xlsx"]</InArgument>
+                <InArgument x:TypeArguments="x:String">["Data\Output\"+strChassisID+"_"+Now.ToString("MMddyyyy_hhmmss")+".xlsx"]</InArgument>
               </Assign.Value>
             </Assign>
             <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtActivity]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="434,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Activity" WorkbookPath="[strOutputFileName]" />
@@ -486,6 +486,7 @@
         <Variable x:TypeArguments="x:String" Name="strERecTruckCode" />
         <Variable x:TypeArguments="x:String" Name="strERecMinusOneTruckerCode" />
         <Variable x:TypeArguments="x:Boolean" Name="blnSuccess" />
+        <Variable x:TypeArguments="x:String" Name="strCompletionText" />
       </Flowchart.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1071,7 +1072,7 @@
                                             <av:PointCollection x:Key="ConnectorLocation">578.6666666666667,918.3333333333334 628.6666666666667,918.3333333333334</av:PointCollection>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_15" Message="[&quot;Num of records with in-gate event in Container history is not equal to 1, Continue with next steps&quot;+Environment.NewLine+&#xD;&#xA;&quot;Num of records with in-gate event in Container history: &quot;+dtContainerHistoryInGate.RowCount.ToString]" />
+                                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,54" sap2010:WorkflowViewState.IdRef="LogMessage_15" Message="[&quot;Num of records with in-gate event in Container history is not equal to 1, Continue with next steps&quot;+Environment.NewLine+&#xA;&quot;Num of records with in-gate event in Container history: &quot;+dtContainerHistoryInGate.RowCount.ToString]" />
                                         <FlowStep.Next>
                                           <FlowStep x:Name="__ReferenceID0">
                                             <sap:WorkflowViewStateService.ViewState>
@@ -1091,7 +1092,7 @@
                                                 <InArgument x:TypeArguments="x:String" x:Key="in_strERecMinusOneTruckerCode">[strERecMinusOneTruckerCode]</InArgument>
                                                 <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateERecMinusOnePlusTenMins">[dateERecMinusOnePlusTenMins]</InArgument>
                                                 <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateERecMinusTenMins">[dateERecMinusTenMins]</InArgument>
-                                                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_blnSuccess">[blnSuccess]</OutArgument>
+                                                <OutArgument x:TypeArguments="x:String" x:Key="out_strCompletionText">[strCompletionText]</OutArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1100,7 +1101,7 @@
                                               </sap:WorkflowViewStateService.ViewState>
                                             </ui:InvokeWorkflowFile>
                                             <FlowStep.Next>
-                                              <FlowDecision x:Name="__ReferenceID12" Condition="[blnSuccess]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.66666666666667,86.66666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                                              <FlowDecision x:Name="__ReferenceID12" Condition="[strCompletionText.ToLower.Contains(&quot;success&quot;)]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.66666666666667,86.66666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1139,18 +1140,40 @@
                                                         <av:Size x:Key="ShapeSize">200,84.66666666666667</av:Size>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <Sequence DisplayName="Throw - ManualReview" sap:VirtualizedContainerService.HintSize="200,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                                                    <Sequence DisplayName="Throw - ManualReview" sap:VirtualizedContainerService.HintSize="496,631.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_58">
                                                       <sap:WorkflowViewStateService.ViewState>
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
-                                                      <Assign sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\TakeScreenshot.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,115.33333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                                                        <ui:InvokeWorkflowFile.Arguments>
+                                                          <InArgument x:TypeArguments="x:String" x:Key="in_Folder" />
+                                                          <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
+                                                        </ui:InvokeWorkflowFile.Arguments>
+                                                      </ui:InvokeWorkflowFile>
+                                                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Close" sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_22" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                                        <ui:Click.CursorPosition>
+                                                          <ui:CursorPosition Position="Center">
+                                                            <ui:CursorPosition.OffsetX>
+                                                              <InArgument x:TypeArguments="x:Int32" />
+                                                            </ui:CursorPosition.OffsetX>
+                                                            <ui:CursorPosition.OffsetY>
+                                                              <InArgument x:TypeArguments="x:Int32" />
+                                                            </ui:CursorPosition.OffsetY>
+                                                          </ui:CursorPosition>
+                                                        </ui:Click.CursorPosition>
+                                                        <ui:Click.Target>
+                                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="08321e9c-3a42-4b86-9caa-4ecf3e5a4f92" InformativeScreenshot="bc317ab860464fc69dff2087476132b6" Selector="&lt;html app='chrome.exe' title='CAMS' /&gt;&lt;webctrl id='closeaddgateevents' tag='BUTTON' /&gt;" TimeoutMS="5000" WaitForReady="COMPLETE" />
+                                                        </ui:Click.Target>
+                                                      </ui:Click>
+                                                      <Assign sap:VirtualizedContainerService.HintSize="434,86" sap2010:WorkflowViewState.IdRef="Assign_23">
                                                         <Assign.To>
                                                           <OutArgument x:TypeArguments="x:String">[strBizExcMsg]</OutArgument>
                                                         </Assign.To>
                                                         <Assign.Value>
-                                                          <InArgument x:TypeArguments="x:String">["Error occured while copying gate event for Chassis ID: "+strChassisID+". Manual review required"]</InArgument>
+                                                          <InArgument x:TypeArguments="x:String" xml:space="preserve">["Error occured while copying gate event for Chassis ID: "+strChassisID+Environment.NewLine+
+"Error message: "+strCompletionText]</InArgument>
                                                         </Assign.Value>
                                                       </Assign>
                                                       <Throw Exception="[new BusinessRuleException(strBizExcMsg)]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="Throw_3" />
