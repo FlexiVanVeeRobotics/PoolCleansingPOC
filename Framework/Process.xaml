@@ -180,7 +180,7 @@
               <OutArgument x:TypeArguments="x:String">[strChassisID]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:String">TLXZ511555</InArgument>
+              <InArgument x:TypeArguments="x:String">FLXZ422377</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
@@ -1052,33 +1052,15 @@
                                             </sap:WorkflowViewStateService.ViewState>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ApplyTenMinsRule" sap:VirtualizedContainerService.HintSize="334,115.33333333333331" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\ApplyTenMinsRule.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="ui:Browser" x:Key="in_UiBrowserCAMS">
-                                                  <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="in_UiBrowserCAMS" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:Int32" x:Key="intERecRowNum">
-                                                  <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="intERecRowNum" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="strERecLoc">
-                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strERecLoc" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="strERecLocMinusOne">
-                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strERecLocMinusOne" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="in_strERecTruckCode">
-                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strERecTruckCode" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="in_strERecMinusOneTruckerCode">
-                                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strERecMinusOneTruckerCode" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateERecMinusOnePlusTenMins">
-                                                  <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateERecMinusOnePlusTenMins" />
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateERecMinusTenMins">
-                                                  <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="dateERecMinusTenMins" />
-                                                </InArgument>
-                                                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_blnSuccess">
-                                                  <VisualBasicReference x:TypeArguments="x:Boolean" ExpressionText="blnSuccess" />
-                                                </OutArgument>
+                                                <InArgument x:TypeArguments="ui:Browser" x:Key="in_UiBrowserCAMS">[in_UiBrowserCAMS]</InArgument>
+                                                <InArgument x:TypeArguments="x:Int32" x:Key="intERecRowNum">[intERecRowNum]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="strERecLoc">[strERecLoc]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="strERecLocMinusOne">[strERecLocMinusOne]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_strERecTruckCode">[strERecTruckCode]</InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="in_strERecMinusOneTruckerCode">[strERecMinusOneTruckerCode]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateERecMinusOnePlusTenMins">[dateERecMinusOnePlusTenMins]</InArgument>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="in_dateERecMinusTenMins">[dateERecMinusTenMins]</InArgument>
+                                                <OutArgument x:TypeArguments="x:Boolean" x:Key="out_blnSuccess">[blnSuccess]</OutArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1087,10 +1069,7 @@
                                               </sap:WorkflowViewStateService.ViewState>
                                             </ui:InvokeWorkflowFile>
                                             <FlowStep.Next>
-                                              <FlowDecision x:Name="__ReferenceID12" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.66666666666667,86.66666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
-                                                <FlowDecision.Condition>
-                                                  <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="blnSuccess" />
-                                                </FlowDecision.Condition>
+                                              <FlowDecision x:Name="__ReferenceID12" Condition="[blnSuccess]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.66666666666667,86.66666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1110,12 +1089,8 @@
                                                     </sap:WorkflowViewStateService.ViewState>
                                                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ValidateEvent" sap:VirtualizedContainerService.HintSize="200,54" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\ValidateEvent.xaml">
                                                       <ui:InvokeWorkflowFile.Arguments>
-                                                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_UiBrowserCAMS">
-                                                          <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="in_UiBrowserCAMS" />
-                                                        </InArgument>
-                                                        <InArgument x:TypeArguments="x:Int32" x:Key="in_intERecRowNum">
-                                                          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="intERecRowNum" />
-                                                        </InArgument>
+                                                        <InArgument x:TypeArguments="ui:Browser" x:Key="in_UiBrowserCAMS">[in_UiBrowserCAMS]</InArgument>
+                                                        <InArgument x:TypeArguments="x:Int32" x:Key="in_intERecRowNum">[intERecRowNum]</InArgument>
                                                       </ui:InvokeWorkflowFile.Arguments>
                                                       <sap:WorkflowViewStateService.ViewState>
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
