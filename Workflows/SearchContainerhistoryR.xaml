@@ -10,7 +10,7 @@
   <this:SearchContainerhistoryR.in_strOutputFileName>
     <InArgument x:TypeArguments="x:String" />
   </this:SearchContainerhistoryR.in_strOutputFileName>
-  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,4938</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,5032.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -111,7 +111,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="690,4873.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_44">
+  <Sequence sap:VirtualizedContainerService.HintSize="690,4968" sap2010:WorkflowViewState.IdRef="Sequence_44">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="_out_ForEachRow_3__CurrentIndex" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtContainerHistoryWithinRange" />
@@ -121,13 +121,13 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UiBrowserCAMS]" BrowserType="Chrome" DisplayName="Attach Browser - R Container history" sap:VirtualizedContainerService.HintSize="648,4786" sap2010:WorkflowViewState.IdRef="BrowserScope_7" InformativeScreenshot="2b2ec250723ad05d3f711d6520514139">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UiBrowserCAMS]" BrowserType="Chrome" DisplayName="Attach Browser - R Container history" sap:VirtualizedContainerService.HintSize="648,4880.666666666667" sap2010:WorkflowViewState.IdRef="BrowserScope_7" InformativeScreenshot="2b2ec250723ad05d3f711d6520514139">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="614,4638.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_28">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="614,4733.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_28">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="dtContainerHistory" />
               <Variable x:TypeArguments="x:Boolean" Name="blnContainerHistory" />
@@ -518,7 +518,7 @@
               </ui:FilterDataTable.SelectColumns>
             </ui:FilterDataTable>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="572,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_16" Message="[&quot;Num of records with in-gate event in Container history: &quot;+out_dtContainerHistoryInGate.RowCount.ToString]" />
-            <If Condition="[out_dtContainerHistoryInGate.RowCount=1]" sap:VirtualizedContainerService.HintSize="572,846.6666666666666" sap2010:WorkflowViewState.IdRef="If_7">
+            <If Condition="[out_dtContainerHistoryInGate.RowCount=1]" sap:VirtualizedContainerService.HintSize="572,809.3333333333334" sap2010:WorkflowViewState.IdRef="If_7">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="538,430.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_42">
                   <sap:WorkflowViewStateService.ViewState>
@@ -567,16 +567,38 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,232" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,194.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_43">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_17" Message="[&quot;Num of records with in-gate event in Container history is not equal to 1, Continue with next steps&quot;+&#xA;&quot;Num of records with in-gate event in Container history: &quot;+out_dtContainerHistoryInGate.RowCount.ToString]" />
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Close Container History" sap:VirtualizedContainerService.HintSize="334,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="765eb0ff-2245-4ee0-b8a5-815df33d5266" InformativeScreenshot="ef45c159d0382d5d8952f10e1a8b83b1" Selector="&lt;html app='chrome.exe' title='CAMS' /&gt;&lt;webctrl id='activityhistory' tag='BUTTON' aaname='×' class='close' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
                 </Sequence>
               </If.Else>
             </If>
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="572,92" sap2010:WorkflowViewState.IdRef="Delay_2" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
