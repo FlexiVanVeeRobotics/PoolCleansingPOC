@@ -1,10 +1,27 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ApplyTenMinsRule" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ApplyTenMinsRule" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_UiBrowserCAMS" Type="InArgument(ui:Browser)" />
     <x:Property Name="intERecRowNum" Type="InArgument(x:Int32)" />
     <x:Property Name="strERecLoc" Type="InArgument(x:String)" />
     <x:Property Name="strERecLocMinusOne" Type="InArgument(x:String)" />
+    <x:Property Name="in_strERecTruckCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_strERecMinusOneTruckerCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_dateERecMinusOnePlusTenMins" Type="InArgument(s:DateTime)" />
+    <x:Property Name="in_dateERecMinusTenMins" Type="InArgument(s:DateTime)" />
   </x:Members>
+  <this:ApplyTenMinsRule.in_strERecTruckCode>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ApplyTenMinsRule.in_strERecTruckCode>
+  <this:ApplyTenMinsRule.in_strERecMinusOneTruckerCode>
+    <InArgument x:TypeArguments="x:String" />
+  </this:ApplyTenMinsRule.in_strERecMinusOneTruckerCode>
+  <this:ApplyTenMinsRule.in_dateERecMinusOnePlusTenMins>
+    <InArgument x:TypeArguments="s:DateTime" />
+  </this:ApplyTenMinsRule.in_dateERecMinusOnePlusTenMins>
+  <this:ApplyTenMinsRule.in_dateERecMinusTenMins>
+    <InArgument x:TypeArguments="s:DateTime" />
+  </this:ApplyTenMinsRule.in_dateERecMinusTenMins>
+  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,2845.3333333333335</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -38,6 +55,7 @@
       <x:String>System.Net.Mail</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -102,36 +120,98 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_58">
+  <Sequence sap:VirtualizedContainerService.HintSize="616.6666666666666,2780.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_58">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strTimeStamp" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UiBrowserCAMS]" DisplayName="ApplyTenMinsRule" sap:VirtualizedContainerService.HintSize="954,54" sap2010:WorkflowViewState.IdRef="BrowserScope_10">
+    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UiBrowserCAMS]" DisplayName="ApplyTenMinsRule" sap:VirtualizedContainerService.HintSize="574.6666666666666,2693.3333333333335" sap2010:WorkflowViewState.IdRef="BrowserScope_10">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="552,2117.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_55">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="540.6666666666666,2584" sap2010:WorkflowViewState.IdRef="Sequence_55">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="strActivitySelectRecordNum" />
+              <Variable x:TypeArguments="x:String" Name="strHour" />
+              <Variable x:TypeArguments="s:DateTime" Name="dateTimeDateStamp" />
+              <Variable x:TypeArguments="x:String" Name="strDateStamp" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="510,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_20">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[strActivitySelectRecordNum]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[(intERecRowNum+4).ToString]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check Record" sap:VirtualizedContainerService.HintSize="510,107.33333333333333" sap2010:WorkflowViewState.IdRef="Check_2">
+            <If Condition="[in_strERecTruckCode=in_strERecMinusOneTruckerCode]" sap:VirtualizedContainerService.HintSize="498.6666666666667,621.3333333333334" sap2010:WorkflowViewState.IdRef="If_11">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="464.6666666666667,218.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MultipleAssign DisplayName="Select Latest Entry" sap:VirtualizedContainerService.HintSize="422.6666666666667,131.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[strActivitySelectRecordNum]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[(intERecRowNum+3).ToString]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[strTimeStamp]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[in_dateERecMinusTenMins.ToString("dd-MMM-yyyy hh:mm:ss")]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="464.6666666666667,218.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MultipleAssign DisplayName="Select Previous Entry" sap:VirtualizedContainerService.HintSize="422.6666666666667,131.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[strActivitySelectRecordNum]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[(intERecRowNum+4).ToString]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[strTimeStamp]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[in_dateERecMinusOnePlusTenMins.ToString("dd-MMM-yyyy hh:mm:ss")]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check Record" sap:VirtualizedContainerService.HintSize="498.6666666666667,107.33333333333333" sap2010:WorkflowViewState.IdRef="Check_2">
               <ui:Check.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5990b6cf-d12b-45a3-89d8-996bc4bf4e7e" InformativeScreenshot="9d886a6a15cc17352775cacb7bd2dae8" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='CAMS' /&gt;&lt;webctrl id='tblgateactivity' tag='TABLE' /&gt;&lt;webctrl id='gateactivitytcheck' tableRow='{0}' tag='INPUT' /&gt;&quot;, strActivitySelectRecordNum)]" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
@@ -140,7 +220,7 @@
                 </ui:Target>
               </ui:Check.Target>
             </ui:Check>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Copy GateEvents" sap:VirtualizedContainerService.HintSize="510,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Copy GateEvents" sap:VirtualizedContainerService.HintSize="498.6666666666667,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -162,7 +242,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select InGate" sap:VirtualizedContainerService.HintSize="510,157.33333333333334" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="I - In Gate">
+            <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select InGate" sap:VirtualizedContainerService.HintSize="498.6666666666667,157.33333333333334" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="I - In Gate">
               <ui:SelectItem.Items>
                 <scg:List x:TypeArguments="x:String" Capacity="4">
                   <x:String>O - Out Gate</x:String>
@@ -180,7 +260,7 @@
                 </ui:Target>
               </ui:SelectItem.Target>
             </ui:SelectItem>
-            <If Condition="[strERecLoc = strERecLocMinusOne]" sap:VirtualizedContainerService.HintSize="510,1412.6666666666667" sap2010:WorkflowViewState.IdRef="If_10">
+            <If Condition="[strERecLoc = strERecLocMinusOne]" sap:VirtualizedContainerService.HintSize="498.6666666666667,720" sap2010:WorkflowViewState.IdRef="If_10">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="376,144" sap2010:WorkflowViewState.IdRef="Sequence_57">
                   <sap:WorkflowViewStateService.ViewState>
@@ -192,18 +272,13 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="476,1084.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_56">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="strDateStamp" />
-                    <Variable x:TypeArguments="s:DateTime" Name="dateTimeDateStamp" />
-                    <Variable x:TypeArguments="x:String" Name="strHour" />
-                  </Sequence.Variables>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,392" sap2010:WorkflowViewState.IdRef="Sequence_56">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT">
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="334,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT">
                     <ui:Click.CursorPosition>
                       <ui:CursorPosition Position="Center">
                         <ui:CursorPosition.OffsetX>
@@ -222,7 +297,7 @@
                       </ui:Target>
                     </ui:Click.Target>
                   </ui:Click>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT'" sap:VirtualizedContainerService.HintSize="434,157.33333333333334" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="True" Text="[strERecLoc+ &quot;[k(enter)]&quot;]">
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT'" sap:VirtualizedContainerService.HintSize="334,157.33333333333334" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="True" Text="[strERecLoc+ &quot;[k(enter)]&quot;]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5e4f92df-6cca-4d3c-b5de-41d4c9407cc8" InformativeScreenshot="844a44b5943ca50ee13b7e6de00581e7" Selector="&lt;html app='chrome.exe' title='CAMS' /&gt;&lt;webctrl class='form-control' css-selector='body&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='3' parentid='frmaddgateeventsinq' tag='INPUT' type='text' /&gt;" WaitForReady="COMPLETE">
                         <ui:Target.TimeoutMS>
@@ -231,7 +306,49 @@
                       </ui:Target>
                     </ui:TypeInto.Target>
                   </ui:TypeInto>
-                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Calender Icon" sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DeselectAfter="False" DisplayName="Type Date" EmptyField="True" sap:VirtualizedContainerService.HintSize="498.6666666666667,157.33333333333334" sap2010:WorkflowViewState.IdRef="TypeInto_4" SendWindowMessages="True" Text="[strTimeStamp+ &quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0e352437-a56c-4b62-9f18-f7d294dc8ae5" InformativeScreenshot="115d9552d132b2c91d4dd0d0eaadd9bb" Selector="&lt;html app='chrome.exe' title='CAMS' /&gt;&lt;webctrl id='add_gate_activity_dt' tag='INPUT' /&gt;" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Save" sap:VirtualizedContainerService.HintSize="498.6666666666667,107.33333333333333" sap2010:WorkflowViewState.IdRef="Click_22" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="06b1cb1f-2b28-435a-96e9-0b6966fd2c8c" InformativeScreenshot="a8f1cc672d623e2f61e8546fa69b17a7" Selector="&lt;html app='chrome.exe' title='CAMS' /&gt;&lt;webctrl id='addgateeventsinq' tag='BUTTON' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="498.6666666666667,54" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="476,686.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Calender Icon" sap:VirtualizedContainerService.HintSize="434,54" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
                     <ui:Click.CursorPosition>
                       <ui:CursorPosition Position="Center">
                         <ui:CursorPosition.OffsetX>
@@ -249,6 +366,12 @@
                         </ui:Target.TimeoutMS>
                       </ui:Target>
                     </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </ui:Click>
                   <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get DateStamp" sap:VirtualizedContainerService.HintSize="434,107.33333333333333" sap2010:WorkflowViewState.IdRef="GetValue_2">
                     <ui:GetValue.Target>
@@ -304,14 +427,21 @@
                     </ui:Click.Target>
                   </ui:Click>
                 </Sequence>
-              </If.Else>
-            </If>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="498.6666666666667,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;&quot;]" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
