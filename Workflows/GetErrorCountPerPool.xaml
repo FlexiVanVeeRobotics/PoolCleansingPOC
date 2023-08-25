@@ -7,7 +7,7 @@
     <x:Property Name="out_StrInvalidCode" Type="OutArgument(x:String)" />
     <x:Property Name="out_StrOtherErrors" Type="OutArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1150,1514.6666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,1514.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -188,7 +188,7 @@
                 <OutArgument x:TypeArguments="x:String">[out_StrOtherErrors]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[out_StrLocSeqErrors.Replace("LOC Seq Errors","").Trim]</InArgument>
+                <InArgument x:TypeArguments="x:String">[out_StrOtherErrors.Replace("OTHER Errors ","").Trim]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
