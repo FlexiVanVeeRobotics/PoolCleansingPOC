@@ -4,7 +4,7 @@
     <x:Property Name="in_UiBrowserCAMS" Type="InArgument(ui:Browser)" />
     <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1430,6487.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1430,6774.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -127,7 +127,7 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1440,6422.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_34">
+  <Sequence sap:VirtualizedContainerService.HintSize="1440,6710" sap2010:WorkflowViewState.IdRef="Sequence_34">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="_out_ForEach_Generic_1_1__CurrentIndex" />
     </Sequence.Variables>
@@ -136,7 +136,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="GetPoolInventory" sap:VirtualizedContainerService.HintSize="1398,6335.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_33">
+    <Sequence DisplayName="GetPoolInventory" sap:VirtualizedContainerService.HintSize="1398,6622.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_33">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="strPoolCode" />
       </Sequence.Variables>
@@ -1368,12 +1368,10 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <umam:SendMail Account="{x:Null}" AttachmentsCollection="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" ReplyTo="{x:Null}" Body="Hi team,&#xD;&#xA;&#xD;&#xA;Please go through attached Pool Inventory.&#xD;&#xA;&#xD;&#xA;Thank you,&#xD;&#xA;Pool Cleansing Bot" DisplayName="Send Mail" sap:VirtualizedContainerService.HintSize="434,362.6666666666667" sap2010:WorkflowViewState.IdRef="SendMail_1" Importance="Normal" IsBodyHTML="False" IsDraft="False" Subject="[&quot;PoolInventory - &quot;+Now.ToShortDateString]" To="[{&quot;sunil@veerobotics.com&quot;,&quot;mahesh@veerobotics.com&quot;}]">
+              <umam:SendMail Account="{x:Null}" AttachmentsCollection="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" ReplyTo="{x:Null}" Body="Hi team,&#xA;&#xA;Please go through attached Pool Inventory.&#xA;&#xA;Thank you,&#xA;Pool Cleansing Bot" DisplayName="Send Mail" sap:VirtualizedContainerService.HintSize="434,362.6666666666667" sap2010:WorkflowViewState.IdRef="SendMail_1" Importance="Normal" IsBodyHTML="False" IsDraft="False" Subject="[&quot;PoolInventory - &quot;+Now.ToShortDateString]" To="[{&quot;sunil@veerobotics.com&quot;,&quot;mahesh@veerobotics.com&quot;}]">
                 <umam:SendMail.Attachments>
                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                    <InArgument x:TypeArguments="x:String">
-                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;C:\Users\gmahe\Documents\UiPath\PoolCleansingPOC\Data\Output\PoolInventory_&quot;+Now.ToString(&quot;MMddyyyy&quot;)+&quot;.xlsx&quot;" />
-                    </InArgument>
+                    <InArgument x:TypeArguments="x:String">["C:\Users\gmahe\Documents\UiPath\PoolCleansingPOC\Data\Output\PoolInventory_"+Now.ToString("MMddyyyy")+".xlsx"]</InArgument>
                   </scg:List>
                 </umam:SendMail.Attachments>
                 <sap:WorkflowViewStateService.ViewState>
@@ -1393,6 +1391,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uma:Office365ApplicationScope>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Workflows\LogoutCAMS.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="1336,115.33333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_28" UnSafe="False" WorkflowFileName="Workflows\LogoutCAMS.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="ui:Browser" x:Key="in_UiBrowserCAMS">
+            <VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="in_UiBrowserCAMS" />
+          </InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="1336,92" sap2010:WorkflowViewState.IdRef="Delay_5" />
       <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="1336,92" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Pool Inventory Retreival Completed" />
     </Sequence>
   </Sequence>
